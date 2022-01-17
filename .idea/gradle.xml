@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/1-string-calculator" />
+            <option value="$PROJECT_DIR$/2-racing-car" />
+            <option value="$PROJECT_DIR$/3-lotto" />
+            <option value="$PROJECT_DIR$/4-blackjack" />
+            <option value="$PROJECT_DIR$/5-chess" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
