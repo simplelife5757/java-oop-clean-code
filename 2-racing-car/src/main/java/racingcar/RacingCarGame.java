@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,5 +43,12 @@ public class RacingCarGame {
     
     public void playAndRecord(Integer round) {
         IntStream.rangeClosed(1, round).forEach(i -> playAndRecord());
+    }
+
+    public List<Car> getFinalWinners() {
+        Integer winnersPosition = cars.stream().map(Car::getPosition).reduce(0, Math::max);
+        return cars.stream()
+                .filter(car -> Objects.equals(car.getPosition(), winnersPosition))
+                .collect(Collectors.toList());
     }
 }

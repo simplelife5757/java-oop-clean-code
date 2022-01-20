@@ -20,6 +20,10 @@ public class Car implements Movable {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public CarSnapShot snapShot() {
         return new CarSnapShot(position, name);
     }

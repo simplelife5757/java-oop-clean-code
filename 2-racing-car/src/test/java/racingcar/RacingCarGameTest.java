@@ -69,4 +69,26 @@ class RacingCarGameTest {
         assertThat(secondRoundSnapShot.getCarSnapShots().get(0)).isEqualTo(new CarSnapShot(2, "John"));
         assertThat(secondRoundSnapShot.getCarSnapShots().get(1)).isEqualTo(new CarSnapShot(2, "Kay"));
     }
+
+    @Test
+    void getFinalWinner_공동_우승() {
+        // Given
+        cars.forEach(Car::move);
+        cars.add(new Car("John2", new AlwaysForwardMoveStrategy()));
+        RacingCarGame racingCarGame = new RacingCarGame(cars);
+
+        // When
+        List<Car> finalWinners = racingCarGame.getFinalWinners();
+
+        // Then
+        assertThat(finalWinners.size()).isEqualTo(2);
+
+        Car finalWinner1 = finalWinners.get(0);
+        assertThat(finalWinner1.getPosition()).isEqualTo(1);
+        assertThat(finalWinner1.getName()).isEqualTo("John");
+
+        Car finalWinner2 = finalWinners.get(1);
+        assertThat(finalWinner2.getPosition()).isEqualTo(1);
+        assertThat(finalWinner2.getName()).isEqualTo("Kay");
+    }
 }
