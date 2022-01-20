@@ -16,7 +16,7 @@ class RacingCarGameTest {
 
     @BeforeEach
     void setUp() {
-        cars = Arrays.stream(new Car[]{new Car("John", moveStrategy), new Car("John", moveStrategy)})
+        cars = Arrays.stream(new Car[]{new Car("John", moveStrategy), new Car("Kay", moveStrategy)})
                 .collect(Collectors.toList());
     }
 
@@ -44,9 +44,8 @@ class RacingCarGameTest {
         // Then
         RoundSnapShot roundSnapShot = racingCarGame.getRoundSnapShots().get(0);
         assertThat(roundSnapShot.getRound()).isEqualTo(1);
-        assertTrue(roundSnapShot.getCarSnapShots()
-                .stream()
-                .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
+        assertThat(roundSnapShot.getCarSnapShots().get(0)).isEqualTo(new CarSnapShot(1, "John"));
+        assertThat(roundSnapShot.getCarSnapShots().get(1)).isEqualTo(new CarSnapShot(1,  "Kay"));
     }
 
     @Test
@@ -62,14 +61,12 @@ class RacingCarGameTest {
 
         RoundSnapShot firstRoundSnapShot = roundSnapShots.get(0);
         assertThat(firstRoundSnapShot.getRound()).isEqualTo(1);
-        assertTrue(firstRoundSnapShot.getCarSnapShots()
-                .stream()
-                .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
+        assertThat(firstRoundSnapShot.getCarSnapShots().get(0)).isEqualTo(new CarSnapShot(1, "John"));
+        assertThat(firstRoundSnapShot.getCarSnapShots().get(1)).isEqualTo(new CarSnapShot(1, "Kay"));
 
         RoundSnapShot secondRoundSnapShot = roundSnapShots.get(1);
         assertThat(secondRoundSnapShot.getRound()).isEqualTo(2);
-        assertTrue(secondRoundSnapShot.getCarSnapShots()
-                .stream()
-                .allMatch(carSnapShot -> carSnapShot.getPosition() == 2));
+        assertThat(secondRoundSnapShot.getCarSnapShots().get(0)).isEqualTo(new CarSnapShot(2, "John"));
+        assertThat(secondRoundSnapShot.getCarSnapShots().get(1)).isEqualTo(new CarSnapShot(2, "Kay"));
     }
 }

@@ -40,6 +40,6 @@ class CarTest {
         car.move();
 
         // Then
-        assertThat(car.snapShot()).isEqualTo(new CarSnapShot(1));
+        assertThat(car.snapShot()).isEqualTo(new CarSnapShot(1, "John"));
     }
 }

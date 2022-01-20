@@ -21,6 +21,6 @@ public class Car implements Movable {
     }
 
     public CarSnapShot snapShot() {
-        return new CarSnapShot(position);
+        return new CarSnapShot(position, name);
     }
 }
