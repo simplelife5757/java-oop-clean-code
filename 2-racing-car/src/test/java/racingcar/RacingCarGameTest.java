@@ -44,7 +44,7 @@ class RacingCarGameTest {
         // Then
         RoundSnapShot roundSnapShot = racingCarGame.getRoundSnapShots().get(0);
         assertThat(roundSnapShot.getRound()).isEqualTo(1);
-        assertTrue(roundSnapShot.getCarSnapShotList()
+        assertTrue(roundSnapShot.getCarSnapShots()
                 .stream()
                 .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
     }

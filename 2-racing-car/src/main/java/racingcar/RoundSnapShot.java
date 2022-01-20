@@ -4,18 +4,18 @@ import java.util.List;
 
 public class RoundSnapShot {
     private final Integer round;
-    private final List<CarSnapShot> carSnapShotList;
+    private final List<CarSnapShot> carSnapShots;
 
-    public RoundSnapShot(Integer round, List<CarSnapShot> carSnapShotList) {
+    public RoundSnapShot(Integer round, List<CarSnapShot> carSnapShots) {
         this.round = round;
-        this.carSnapShotList = carSnapShotList;
+        this.carSnapShots = carSnapShots;
     }
 
     public Integer getRound() {
         return round;
     }
 
-    public List<CarSnapShot> getCarSnapShotList() {
-        return carSnapShotList;
+    public List<CarSnapShot> getCarSnapShots() {
+        return carSnapShots;
     }
 }
