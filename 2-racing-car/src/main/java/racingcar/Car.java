@@ -3,8 +3,10 @@ package racingcar;
 public class Car implements Movable {
     private final MoveStrategy<Integer> moveStrategy;
     private Integer position;
+    private String name;
 
-    public Car(MoveStrategy<Integer> moveStrategy) {
+    public Car(String name, MoveStrategy<Integer> moveStrategy) {
+        this.name = name;
         this.moveStrategy = moveStrategy;
         this.position = moveStrategy.initialPosition();
     }
@@ -16,5 +18,9 @@ public class Car implements Movable {
 
     public Integer getPosition() {
         return position;
+    }
+
+    public CarSnapShot snapShot() {
+        return new CarSnapShot(position);
     }
 }

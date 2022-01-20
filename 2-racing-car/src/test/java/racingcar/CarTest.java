@@ -9,7 +9,7 @@ class CarTest {
     @Test
     void move_일보_전진() {
         // Given
-        Car car = new Car(new AlwaysForwardMoveStrategy());
+        Car car = new Car("John", new AlwaysForwardMoveStrategy());
 
         // When
         car.move();
@@ -21,7 +21,7 @@ class CarTest {
     @Test
     void move_두번_전진() {
         // Given
-        Car car = new Car(new AlwaysForwardMoveStrategy());
+        Car car = new Car("John", new AlwaysForwardMoveStrategy());
 
         // When
         car.move();
@@ -29,5 +29,17 @@ class CarTest {
 
         // Then
         assertThat(car.getPosition()).isEqualTo(2);
+    }
+
+    @Test
+    void snapShot_일보_전진() {
+        // Given
+        Car car = new Car("John", new AlwaysForwardMoveStrategy());
+
+        // When
+        car.move();
+
+        // Then
+        assertThat(car.snapShot()).isEqualTo(new CarSnapShot(1));
     }
 }

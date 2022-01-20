@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RacingCarGameTest {
@@ -15,7 +16,7 @@ class RacingCarGameTest {
 
     @BeforeEach
     void setUp() {
-        cars = Arrays.stream(new Car[]{new Car(moveStrategy), new Car(moveStrategy)})
+        cars = Arrays.stream(new Car[]{new Car("John", moveStrategy), new Car("John", moveStrategy)})
                 .collect(Collectors.toList());
     }
 
@@ -29,5 +30,22 @@ class RacingCarGameTest {
 
         // Then
         assertTrue(racingCarGame.getCars().stream().allMatch(car -> car.getPosition() == 1));
+    }
+
+    @Test
+    void recordRoundSnapShot_자동차들_일보_전진() {
+        // Given
+        RacingCarGame racingCarGame = new RacingCarGame(cars);
+        racingCarGame.play();
+
+        // When
+        racingCarGame.recordRoundSnapShot();
+
+        // Then
+        RoundSnapShot roundSnapShot = racingCarGame.getRoundSnapShots().get(0);
+        assertThat(roundSnapShot.getRound()).isEqualTo(1);
+        assertTrue(roundSnapShot.getCarSnapShotList()
+                .stream()
+                .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
     }
 }
