@@ -3,6 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RacingCarGame {
     private final List<Car> cars;
@@ -32,5 +33,14 @@ public class RacingCarGame {
 
     public List<RoundSnapShot> getRoundSnapShots() {
         return roundSnapShots;
+    }
+
+    private void playAndRecord() {
+        play();
+        recordRoundSnapShot();
+    }
+    
+    public void playAndRecord(Integer round) {
+        IntStream.rangeClosed(1, round).forEach(i -> playAndRecord());
     }
 }

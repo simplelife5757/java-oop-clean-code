@@ -48,4 +48,28 @@ class RacingCarGameTest {
                 .stream()
                 .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
     }
+
+    @Test
+    void playAndRecord_2회_기록() {
+        RacingCarGame racingCarGame = new RacingCarGame(cars);
+
+        // When
+        racingCarGame.playAndRecord(2);
+
+        // Then
+        List<RoundSnapShot> roundSnapShots = racingCarGame.getRoundSnapShots();
+        assertThat(roundSnapShots.size()).isEqualTo(2);
+
+        RoundSnapShot firstRoundSnapShot = roundSnapShots.get(0);
+        assertThat(firstRoundSnapShot.getRound()).isEqualTo(1);
+        assertTrue(firstRoundSnapShot.getCarSnapShots()
+                .stream()
+                .allMatch(carSnapShot -> carSnapShot.getPosition() == 1));
+
+        RoundSnapShot secondRoundSnapShot = roundSnapShots.get(1);
+        assertThat(secondRoundSnapShot.getRound()).isEqualTo(2);
+        assertTrue(secondRoundSnapShot.getCarSnapShots()
+                .stream()
+                .allMatch(carSnapShot -> carSnapShot.getPosition() == 2));
+    }
 }
