@@ -16,6 +16,5 @@ public class StringCalculator {
         return Arrays.stream(values)
                 .map(parseStrategy::parse)
                 .reduce(0, Integer::sum);
-//                .map(parseStrategy::parse) // parse 에서 양수 validate 까지 하는게 나을까? ㅇㅇ 그럴듯,, 아 근데 map을 이렇게 사용하는게 맞나?
     }
 }
