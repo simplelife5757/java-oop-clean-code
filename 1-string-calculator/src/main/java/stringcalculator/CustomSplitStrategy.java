@@ -1,6 +1,8 @@
 package stringcalculator;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CustomSplitStrategy implements SplitStrategy<String> {
 
@@ -18,8 +20,11 @@ public class CustomSplitStrategy implements SplitStrategy<String> {
         if (!raw.startsWith(START_INDEX_OF_CUSTOM_DELIMITER)) {
             return raw.split(DEFAULT_DELIMITER);
         }
-        int index = raw.indexOf(END_INDEX_OF_CUSTOM_DELIMITER);
-        String customDelimiter = raw.substring(2, index);
-        return raw.substring(index + 1).split(customDelimiter);
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(raw);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            return m.group(2).split(customDelimiter);
+        }
+        throw new IllegalArgumentException("올바른 입력값이 아닙니다.");
     }
 }

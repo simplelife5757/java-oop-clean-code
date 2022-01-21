@@ -2,6 +2,6 @@ package stringcalculator;
 
 public class StringCalculatorLauncher {
     public static void main(String[] args) {
-        // TODO: implement here
+        StringCalculator stringCalculator = new StringCalculator(new CustomSplitStrategy(), new PositiveIntegerParseStrategy());
     }
 }
