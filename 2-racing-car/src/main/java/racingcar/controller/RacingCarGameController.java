@@ -25,4 +25,12 @@ public class RacingCarGameController {
 
         racingCarGame.playAndRecord(requestDto.getRound());
     }
+
+    public void outputRoundResult() {
+        outputView.outputRoundResult(racingCarGame.getRoundSnapShots());
+    }
+
+    public void outputFinalWinningCarNames() {
+        outputView.outputFinalWinningCarNames(racingCarGame.getFinalWinners());
+    }
 }
