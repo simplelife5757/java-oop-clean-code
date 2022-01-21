@@ -1,4 +1,11 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.domain.MoveStrategy;
+import racingcar.domain.RacingCarGame;
+import racingcar.domain.RandomMoveStrategy;
+import racingcar.domain.Car;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;

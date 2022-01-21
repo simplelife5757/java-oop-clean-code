@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.domain.MoveStrategy;
+
 public class OneStepMoveStrategy implements MoveStrategy<Integer> {
     public OneStepMoveStrategy() {
     }

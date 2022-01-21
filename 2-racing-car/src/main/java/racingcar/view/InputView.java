@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.controller.RequestDto;
 
 import java.util.Arrays;
 import java.util.List;
