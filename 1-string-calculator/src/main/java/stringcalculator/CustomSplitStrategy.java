@@ -12,7 +12,7 @@ public class CustomSplitStrategy implements SplitStrategy<String> {
 
     @Override
     public String[] split(String raw) {
-        if (Objects.equals(raw, EMPTY)) {
+        if (raw == null || raw.isEmpty()) {
             return new String[] {DEFAULT_NUMBER};
         }
         if (!raw.startsWith(START_INDEX_OF_CUSTOM_DELIMITER)) {

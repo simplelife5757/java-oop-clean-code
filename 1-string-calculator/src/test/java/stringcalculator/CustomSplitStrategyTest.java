@@ -26,4 +26,13 @@ class CustomSplitStrategyTest {
 
         assertThat(result).isEqualTo(new String[] {"1", "2", "3"});
     }
+
+    @Test
+    void split_null_of_empty() {
+        CustomSplitStrategy customSplitStrategy = new CustomSplitStrategy();
+
+        assertThat(customSplitStrategy.split("")).isEqualTo(new String[] {"0"});
+
+        assertThat(customSplitStrategy.split(null)).isEqualTo(new String[] {"0"});
+    }
 }
