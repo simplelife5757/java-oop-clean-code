@@ -9,13 +9,11 @@ import java.util.List;
 public class RacingCarGameController {
     private InputView inputView;
     private OutputView outputView;
-    private MoveStrategy<Integer> moveStrategy;
     private RacingCarGame racingCarGame;
 
-    public RacingCarGameController(InputView inputView, OutputView outputView, MoveStrategy<Integer> moveStrategy) {
+    public RacingCarGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.moveStrategy = moveStrategy;
     }
 
     public void initAndPlay() {

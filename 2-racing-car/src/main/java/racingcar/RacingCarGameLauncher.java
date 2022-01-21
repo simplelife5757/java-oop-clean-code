@@ -1,15 +1,12 @@
 package racingcar;
 
 import racingcar.controller.RacingCarGameController;
-import racingcar.domain.RandomMoveStrategy;
 import racingcar.view.ConsoleInputView;
 import racingcar.view.ConsoleOutputView;
 
 public class RacingCarGameLauncher {
     public static void main(String[] args) {
-        RacingCarGameController racingCarGameController = new RacingCarGameController(
-                new ConsoleInputView(), new ConsoleOutputView(), new RandomMoveStrategy()
-        );
+        RacingCarGameController racingCarGameController = new RacingCarGameController(new ConsoleInputView(), new ConsoleOutputView());
 
         racingCarGameController.initAndPlay();
         racingCarGameController.outputRoundResult();
