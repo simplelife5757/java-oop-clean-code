@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class Car implements Movable {
     private final MoveStrategy<Integer> moveStrategy;
@@ -26,5 +26,9 @@ public class Car implements Movable {
 
     public CarSnapShot snapShot() {
         return new CarSnapShot(position, name);
+    }
+
+    public MoveStrategy<Integer> getMoveStrategy() {
+        return moveStrategy;
     }
 }
