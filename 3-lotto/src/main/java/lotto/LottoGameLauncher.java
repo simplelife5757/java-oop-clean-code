@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.controller.LottoGameController;
+
 public class LottoGameLauncher {
     public static void main(String[] args) {
-        // TODO: implement here
+        LottoGameController lottoGameController = new LottoGameController();
+        lottoGameController.play();
     }
 }
