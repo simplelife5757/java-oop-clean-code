@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.ManualLottoTickets;
 import lotto.domain.ManualPurchaseAmount;
 import lotto.domain.PurchaseMoney;
 
@@ -24,13 +25,13 @@ public class InputView {
         }
     }
 
-    public static List<String> inputManualLottoNumbers(Integer purchaseAmount) {
+    public static ManualLottoTickets inputManualLottoTickets(Integer purchaseAmount) {
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
-        List<String> manualLottoNumbers = new ArrayList<>();
+        List<String> manualLottoTickets = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            manualLottoNumbers.add(inputManualLottoNumber());
+            manualLottoTickets.add(inputManualLottoNumber());
         }
-        return manualLottoNumbers;
+        return new ManualLottoTickets(manualLottoTickets);
     }
 
     private static String inputManualLottoNumber() {
