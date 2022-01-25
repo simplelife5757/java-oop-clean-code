@@ -1,12 +1,14 @@
 package lotto.controller;
 
+import lotto.domain.ManualPurchaseAmount;
+import lotto.domain.PurchaseMoney;
 import lotto.view.InputView;
 
 public class LottoGameController {
     public void play() {
-        int purchaseMoney = InputView.inputPurchaseMoney();
+        PurchaseMoney purchaseMoney = InputView.inputPurchaseMoney();
 
-        int purchaseAmount = InputView.inputManualPurchaseAmount();
-        System.out.println(InputView.inputManualLottoNumbers(purchaseAmount));
+        ManualPurchaseAmount manualPurchaseAmount = InputView.inputManualPurchaseAmount();
+        purchaseMoney.validateManualPurchaseAmount(manualPurchaseAmount);
     }
 }
