@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoTicket;
-import lotto.domain.ManualLottoTickets;
-import lotto.domain.ManualPurchaseAmount;
-import lotto.domain.PurchaseMoney;
+import lotto.domain.*;
 import lotto.view.InputView;
 
 import java.util.List;
@@ -17,12 +14,13 @@ public class LottoGameController {
         ManualPurchaseAmount manualPurchaseAmount = new ManualPurchaseAmount(InputView.inputManualPurchaseAmount());
         purchaseMoney.validateManualPurchaseAmount(manualPurchaseAmount);
 
-        List<LottoTicket> manualLottoTickets = createManualLottoTickets(
+        LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
+        List<LottoTicket> manualLottoTickets = lottoTicketGenerator.generateManualLottoTickets(
                 InputView.inputManualLottoTickets(manualPurchaseAmount.getManualPurchaseAmount())
         );
-    }
-
-    public List<LottoTicket> createManualLottoTickets(List<String> manualLottoTickets) {
-        return manualLottoTickets.stream().map(LottoTicket::new).collect(Collectors.toList());
+        int autoLottoTicketAmount = purchaseMoney.getPurchaseAmount() - manualPurchaseAmount.getManualPurchaseAmount();
+        List<LottoTicket> autoLottoTickets = lottoTicketGenerator.generateAutoLottoTickets(
+                new RandomLottoTicketGeneratorStrategy(), autoLottoTicketAmount
+        );
     }
 }

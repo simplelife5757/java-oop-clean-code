@@ -26,8 +26,12 @@ public class PurchaseMoney {
     }
 
     public void validateManualPurchaseAmount(ManualPurchaseAmount manualPurchaseAmount) {
-        if (purchaseMoney / 10000 < manualPurchaseAmount.getManualPurchaseAmount()) {
+        if (purchaseMoney / 1000 < manualPurchaseAmount.getManualPurchaseAmount()) {
             throw new IllegalArgumentException("수동으로 구매할 로또 수는 구입금액 보다 적게 입력해 주세요.");
         }
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseMoney / 1000;
     }
 }
