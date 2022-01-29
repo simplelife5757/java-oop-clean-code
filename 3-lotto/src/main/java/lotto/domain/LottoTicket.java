@@ -51,8 +51,7 @@ public class LottoTicket {
 
     @Override
     public String toString() {
-        return "LottoTicket{" +
-                "lottoNumbers=" + lottoNumbers +
-                '}';
+        return String.format("[%s]", lottoNumbers.stream().map(lottoNumber -> String.valueOf(lottoNumber.getLottoNumber())).collect(Collectors.joining(", ")));
     }
+
 }

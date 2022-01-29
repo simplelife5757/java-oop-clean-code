@@ -2,9 +2,9 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class LottoGameController {
@@ -22,5 +22,7 @@ public class LottoGameController {
         List<LottoTicket> autoLottoTickets = lottoTicketGenerator.generateAutoLottoTickets(
                 new RandomLottoTicketGeneratorStrategy(), autoLottoTicketAmount
         );
+
+        OutputView.printLottoTickets(manualLottoTickets, autoLottoTickets);
     }
 }
