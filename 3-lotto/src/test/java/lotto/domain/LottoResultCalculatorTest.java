@@ -18,11 +18,11 @@ class LottoResultCalculatorTest {
 
         // When
         List<LottoTicket> lottoTickets = Arrays.asList(new LottoTicket("1, 2, 3, 4, 5, 6"));
-        Map<LottoPrize, Integer> result = lottoResultCalculator.calculateResult(lottoTickets);
+        LottoResult result = lottoResultCalculator.calculateResult(lottoTickets);
 
         // Then
-        assertThat(result).hasSize(1).containsKey(LottoPrize.FIRST);
-        assertThat(result.get(LottoPrize.FIRST)).isEqualTo(1);
+        assertThat(result.getCountByLottoPrize()).hasSize(1).containsKey(LottoPrize.FIRST);
+        assertThat(result.getCountByLottoPrize().get(LottoPrize.FIRST)).isEqualTo(1);
     }
 
 }

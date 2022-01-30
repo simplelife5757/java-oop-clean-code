@@ -1,9 +1,10 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LottoResultCalculator {
     private final LottoTicket winningLottoTicket;
@@ -14,8 +15,17 @@ public class LottoResultCalculator {
         this.winningBonusNumber = winningBonusNumber;
     }
 
-    public Map<LottoPrize, Integer> calculateResult(List<LottoTicket> lottoTickets) {
-        Map<LottoPrize, Integer> result = new HashMap<>();
+    public LottoResult calculateResult(List<LottoTicket> lottoTickets) {
+        Map<LottoPrize, Integer> result = calculateCountByLottoPrize(lottoTickets);
+        Integer totalPrize = result.entrySet()
+                .stream()
+                .map(lottoPrizeIntegerEntry -> lottoPrizeIntegerEntry.getKey().getPrize() * lottoPrizeIntegerEntry.getValue())
+                .reduce(0, Integer::sum);
+        return new LottoResult(result, totalPrize / (lottoTickets.size() * 1000L));
+    }
+
+    private Map<LottoPrize, Integer> calculateCountByLottoPrize(List<LottoTicket> lottoTickets) {
+        Map<LottoPrize, Integer> result = Arrays.stream(LottoPrize.values()).collect(Collectors.toMap(Function.identity(), i -> 0));
         for (LottoTicket lottoTicket: lottoTickets) {
             LottoPrize lottoPrize = calculateLottoPrize(lottoTicket);
             result.put(lottoPrize, result.getOrDefault(lottoPrize, 0)+1);
@@ -27,7 +37,7 @@ public class LottoResultCalculator {
         int winningNumber = this.winningLottoTicket.countWinningNumber(lottoTicket);
         boolean containBonus = lottoTicket.contain(this.winningBonusNumber);
         return Arrays.stream(LottoPrize.values())
-                .filter(l -> l.equal(winningNumber, containBonus))
-                .findFirst().orElse(LottoPrize.NOTHING);
+                .filter(l -> l.hasEqualPrize(winningNumber, containBonus))
+                .findFirst().orElseThrow();
     }
 }

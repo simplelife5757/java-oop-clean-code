@@ -32,6 +32,7 @@ public class LottoGameController {
         LottoNumber lastBonusNumber = new LottoNumber(InputView.inputBonusNumber());
 
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(lastWinningLottoTicket, lastBonusNumber);
-        Map<LottoPrize, Integer> result = lottoResultCalculator.calculateResult(Stream.concat(manualLottoTickets.stream(), autoLottoTickets.stream()).collect(Collectors.toList()));
+        LottoResult lottoResult = lottoResultCalculator.calculateResult(Stream.concat(manualLottoTickets.stream(), autoLottoTickets.stream()).collect(Collectors.toList()));
+        OutputView.printLottoResult(lottoResult);
     }
 }
