@@ -54,4 +54,11 @@ public class LottoTicket {
         return String.format("[%s]", lottoNumbers.stream().map(lottoNumber -> String.valueOf(lottoNumber.getLottoNumber())).collect(Collectors.joining(", ")));
     }
 
+    public int countWinningNumber(LottoTicket lottoTicket) {
+        return (int) this.lottoNumbers.stream().map(lottoTicket::contain).filter(p -> p).count();
+    }
+
+    public boolean contain(LottoNumber lottoNumber) {
+        return this.lottoNumbers.contains(lottoNumber);
+    }
 }
