@@ -8,4 +8,12 @@ public class Card {
         this.rank = rank;
         this.shape = shape;
     }
+
+    public String getCard() {
+        return rank.getScore() + shape.getShape();
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
 }
