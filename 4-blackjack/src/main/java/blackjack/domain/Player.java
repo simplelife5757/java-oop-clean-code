@@ -6,6 +6,7 @@ import java.util.List;
 public class Player {
     private final String name;
     private final Cards cards = new Cards(new ArrayList<>());
+    private final Record record = new Record();
 
     public Player(String name) {
         this.name = name;
@@ -25,5 +26,17 @@ public class Player {
 
     public int getScore() {
         return cards.getScore();
+    }
+
+    public void win() {
+        this.record.addWinningCount();
+    }
+
+    public void lose() {
+        this.record.addLosingCount();
+    }
+
+    public Record getRecord() {
+        return record;
     }
 }

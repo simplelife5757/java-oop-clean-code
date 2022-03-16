@@ -1,6 +1,7 @@
 package blackjack.controller;
 
 import blackjack.domain.BlackjackGame;
+import blackjack.domain.FinalResult;
 import blackjack.domain.Player;
 import blackjack.domain.StandardDeckFactory;
 import blackjack.view.InputView;
@@ -20,6 +21,10 @@ public class BlackjackGameController {
             giveAdditionalCard(blackjackGame, playerName);
         }
         blackjackGame.giveAdditionalCardToDealer();
+
+        OutputView.printCardResults(blackjackGame.getCardSnapshots());
+
+        OutputView.printFinalResults(blackjackGame.getFinalResults());
     }
 
     private void giveAdditionalCard(BlackjackGame blackjackGame, String playerName) {

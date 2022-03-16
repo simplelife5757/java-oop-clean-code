@@ -56,4 +56,27 @@ public class BlackjackGame {
             dealer.receiveCards(new Cards(deck.pickRandomCards(1)));
         }
     }
+
+    public List<FinalResult> getFinalResults() {
+        this.players.forEach(player -> recordResult(player, dealer));
+
+        List<FinalResult> finalResults = new ArrayList<>();
+        FinalResult dealerResult = new FinalResult(dealer.getName(), dealer.getRecord().getWinningCount(), dealer.getRecord().getLosingCount());
+        finalResults.add(dealerResult);
+        List<FinalResult> playerResults = players.stream().map(player -> new FinalResult(player.getName(), player.getRecord().getWinningCount(), player.getRecord().getLosingCount())).collect(Collectors.toList());
+        finalResults.addAll(playerResults);
+
+        return finalResults;
+    }
+
+    private void recordResult(Player player, Dealer dealer) {
+        if (player.getScore() < dealer.getScore()) {
+            dealer.win();
+            player.lose();
+            return;
+        }
+
+        dealer.lose();
+        player.win();
+    }
 }
