@@ -1,7 +1,10 @@
 package blackjack;
 
+import blackjack.controller.BlackjackGameController;
+
 public class BlackjackGameLauncher {
     public static void main(String[] args) {
-        // TODO: implement here
+        BlackjackGameController blackjackGameController = new BlackjackGameController();
+        blackjackGameController.play();
     }
 }
