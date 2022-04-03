@@ -1,4 +1,4 @@
-package blackjack.domain;
+package blackjack.domain.cards;
 
 public class Card {
     private final Rank rank;

@@ -1,29 +1,18 @@
 package blackjack.view;
 
-import blackjack.domain.CardSnapshot;
+import blackjack.controller.dto.CardsSnapshot;
 import blackjack.domain.FinalResult;
 
 import java.util.List;
 
-public class OutputView {
-    public static void printCardSnapshots(List<CardSnapshot> cardSnapshots) {
-        cardSnapshots.forEach(OutputView::printCardSnapshot);
-    }
+public interface OutputView {
+    public void outputCardSnapshots(List<CardsSnapshot> cardsSnapshots);
 
-    public static void printCardSnapshot(CardSnapshot cardSnapshot) {
-        System.out.printf("%s: %s\n", cardSnapshot.getName(), String.join(", ", cardSnapshot.getCards()));
-    }
+    public void outputCardSnapshot(CardsSnapshot cardsSnapshot);
 
-    public static void printCardResults(List<CardSnapshot> cardSnapshots) {
-        cardSnapshots.forEach(OutputView::printCardResult);
-    }
+    public void outputCardResults(List<CardsSnapshot> cardsSnapshots);
 
-    public static void printCardResult(CardSnapshot cardSnapshot) {
-        System.out.printf("%s: %s - 결과: %s\n", cardSnapshot.getName(), String.join(", ", cardSnapshot.getCards()), 10);
-    }
+    public void outputCardResult(CardsSnapshot cardsSnapshot);
 
-    public static void printFinalResults(List<FinalResult> finalResults) {
-        System.out.println("## 최종 승패");
-        finalResults.forEach(System.out::println);
-    }
+    public void outputFinalResults(List<FinalResult> finalResults);
 }

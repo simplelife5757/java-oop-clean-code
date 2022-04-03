@@ -11,29 +11,18 @@ public class FinalResult {
         this.losingCount = losingCount;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getWinningCount() {
-        return winningCount;
-    }
-
-    public int getLosingCount() {
-        return losingCount;
+    private String getRecord() {
+        if (losingCount == 0 && winningCount == 1) {
+            return "승";
+        }
+        if (winningCount == 0 && losingCount == 1) {
+            return "패";
+        }
+        return String.format("%s승 %s패", winningCount, losingCount);
     }
 
     @Override
     public String toString() {
-        String record;
-        if (losingCount == 0) {
-            record = "승";
-        }
-        if (winningCount == 0) {
-            record = "패";
-        }
-        record = String.format("%s승 %s패", winningCount, losingCount);
-
-        return String.format("%s: %s", name, record);
+        return String.format("%s: %s", name, getRecord());
     }
 }

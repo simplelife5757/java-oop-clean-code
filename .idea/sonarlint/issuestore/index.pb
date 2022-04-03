@@ -21,13 +21,11 @@ d
 44-blackjack/src/main/java/blackjack/domain/Deck.java,1/7/175863182a4180b2523e43853faf5625ea19fd03
 e
 54-blackjack/src/main/java/blackjack/domain/Shape.java,7/e/7ee28e8987d18baf20715ca2c77c76fe19f70c6f
-n
->4-blackjack/src/main/java/blackjack/BlackjackGameLauncher.java,e/2/e23c0f30f8da98fe3b54a60cf03e31b8f5d0c035
-g
-74-blackjack/src/main/java/blackjack/view/InputView.java,2/0/2090cf5bcf4f3986e7de4d1a5fc51d148e8a638a
 e
 54-blackjack/src/main/java/blackjack/domain/Cards.java,b/1/b16db3e7e95c1081be1068d942325c8b784ca3bf
 s
 C4-blackjack/src/main/java/blackjack/domain/StandardDeckFactory.java,3/3/33178c46eab8ed30a661917cc3747d47f5667ea9
 d
 44-blackjack/src/main/java/blackjack/domain/Card.java,9/1/91092464d1afda46d8e7f3f59e43012d8f1a4159
+g
+74-blackjack/src/main/java/blackjack/view/InputView.java,2/0/2090cf5bcf4f3986e7de4d1a5fc51d148e8a638a

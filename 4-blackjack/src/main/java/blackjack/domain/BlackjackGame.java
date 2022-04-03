@@ -1,82 +1,38 @@
 package blackjack.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import blackjack.domain.deck.Deck;
+import blackjack.domain.participants.Participants;
+import blackjack.view.ConsoleInputView;
+import blackjack.view.OutputView;
 
 public class BlackjackGame {
-    private final Dealer dealer = new Dealer();
-    private final List<Player> players;
+    private final ConsoleInputView inputView;
+    private final OutputView outputView;
     private final Deck deck;
+    private final Participants participants;
 
-    public BlackjackGame(List<Player> players, Deck deck) {
-        this.players = players;
+    public BlackjackGame(ConsoleInputView inputView, OutputView outputView, Deck deck) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.deck = deck;
+        this.participants = new Participants(inputView.inputPlayerNames());
     }
 
-    public void giveOutCards() {
-        dealer.receiveCards(new Cards(deck.pickRandomCards(2)));
-        players.forEach(player -> player.receiveCards(new Cards(deck.pickRandomCards(2))));
+    public void initGame() {
+        participants.initCard(deck);
+        outputView.outputCardSnapshots(this.participants.getCardSnapShots());
+        participants.giveAdditionalCard(inputView, outputView, deck);
     }
 
-    public List<CardSnapshot> getCardSnapshots() {
-        List<CardSnapshot> cardSnapshots = new ArrayList<>();
-        cardSnapshots.add(new CardSnapshot(dealer.getName(), dealer.getCardNames()));
-        cardSnapshots.addAll(
-                players.stream()
-                        .map(player -> new CardSnapshot(player.getName(), player.getCardNames()))
-                        .collect(Collectors.toList())
-        );
-        return cardSnapshots;
+    public void outputCardResults() {
+        this.outputView.outputCardResults(this.participants.getCardSnapShots());
     }
 
-    // TODO: 함수명 변경
-    public boolean canReceiveAdditionalCard(String playerName) {
-        Player player = findPlayer(playerName);
-        return player.getScore() < 21;
+    public void recordFinalResults() {
+        this.participants.recordFinalResults();
     }
 
-    private Player findPlayer(String playerName) {
-        return players.stream().filter(player -> Objects.equals(player.getName(), playerName)).findFirst().orElseThrow(IllegalAccessError::new);
-    }
-
-    public void giveAdditionalCard(String playerName) {
-        Player player = findPlayer(playerName);
-        player.receiveCards(new Cards(deck.pickRandomCards(1)));
-    }
-
-    public CardSnapshot getCardSnapshot(String playerName) {
-        Player player = findPlayer(playerName);
-        return new CardSnapshot(player.getName(), player.getCardNames());
-    }
-
-    public void giveAdditionalCardToDealer() {
-        while (dealer.getScore() < 16) {
-            dealer.receiveCards(new Cards(deck.pickRandomCards(1)));
-        }
-    }
-
-    public List<FinalResult> getFinalResults() {
-        this.players.forEach(player -> recordResult(player, dealer));
-
-        List<FinalResult> finalResults = new ArrayList<>();
-        FinalResult dealerResult = new FinalResult(dealer.getName(), dealer.getRecord().getWinningCount(), dealer.getRecord().getLosingCount());
-        finalResults.add(dealerResult);
-        List<FinalResult> playerResults = players.stream().map(player -> new FinalResult(player.getName(), player.getRecord().getWinningCount(), player.getRecord().getLosingCount())).collect(Collectors.toList());
-        finalResults.addAll(playerResults);
-
-        return finalResults;
-    }
-
-    private void recordResult(Player player, Dealer dealer) {
-        if (player.getScore() < dealer.getScore()) {
-            dealer.win();
-            player.lose();
-            return;
-        }
-
-        dealer.lose();
-        player.win();
+    public void outputFinalResults() {
+        this.outputView.outputFinalResults(this.participants.getFinalResults());
     }
 }
